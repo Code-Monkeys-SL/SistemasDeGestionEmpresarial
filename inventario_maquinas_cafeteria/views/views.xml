@@ -1,0 +1,194 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="inventario_maquinas_cafeteria.list">
+      <field name="name">InventarioMaquinasCafeteria list</field>
+      <field name="model">inventario_maquinas_cafeteria.inventario_maquinas_cafeteria</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="inventario_maquinas_cafeteria.action_window">
+      <field name="name">InventarioMaquinasCafeteria window</field>
+      <field name="res_model">inventario_maquinas_cafeteria.inventario_maquinas_cafeteria</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="inventario_maquinas_cafeteria.action_server">
+      <field name="name">InventarioMaquinasCafeteria server</field>
+      <field name="model_id" ref="model_inventario_maquinas_cafeteria_inventario_maquinas_cafeteria"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="InventarioMaquinasCafeteria" id="inventario_maquinas_cafeteria.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="inventario_maquinas_cafeteria.menu_1" parent="inventario_maquinas_cafeteria.menu_root"/>
+    <menuitem name="Menu 2" id="inventario_maquinas_cafeteria.menu_2" parent="inventario_maquinas_cafeteria.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="inventario_maquinas_cafeteria.menu_1_list" parent="inventario_maquinas_cafeteria.menu_1"
+              action="inventario_maquinas_cafeteria.action_window"/>
+    <menuitem name="Server to list" id="inventario_maquinas_cafeteria" parent="inventario_maquinas_cafeteria.menu_2"
+              action="inventario_maquinas_cafeteria.action_server"/>
+-->
+
+
+    <!-- VISTA DE MAQUINA -->
+    <record model="ir.ui.view" id="inventario_maquinas_cafeteria.maquina_list_view">
+      <field name="name">inventario_maquinas_cafeteria.maquina.view.tree</field>
+      <field name="model">inventario_maquinas_cafeteria.maquina</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="ubicacion"/>
+          <field name="adquirido"/>
+          <field name="estado"/>
+          <field name="coste"/>
+          <field name="tiempo_adquirido"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="inventario_maquinas_cafeteria.maquina_form_view">
+      <field name="name">inventario_maquinas_cafeteria.maquina.view.form</field>
+      <field name="model">inventario_maquinas_cafeteria.maquina</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de Máquinas">
+          <sheet>
+            <div class="oe title">
+              <!-- <label class="oe_edit_only" for="name" string="Dirección"/> -->
+              <h1>
+                <field name="name" placeholder="Nombre de la máquina" required="1"/>
+              </h1>
+            </div>
+            <group>
+              <group>
+                <separator string="Información de la máquina"/>
+                <field name="cod" required="1"/>
+                <field name="ubicacion"/>
+                <field name="estado"/>
+                <field name="coste"/>
+                <field name="adquirido"/>
+              </group>
+            </group>
+            <group>
+              <separator string="Información de los mantenimientos llevados a cabo"/>
+              <field name="mantenimiento_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="inventario_maquinas_cafeteria.maquina_search_view">
+      <field name="name">inventario_maquinas_cafeteria.maquina.view.search</field>
+      <field name="model">inventario_maquinas_cafeteria.maquina</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="cod"/>
+          <field name="name"/>
+          <field name="ubicacion"/>
+          <field name="adquirido"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- VISTA DE MANTENIMIENTO -->
+    <record model="ir.ui.view" id="inventario_maquinas_cafeteria.mantenimiento_list_view">
+      <field name="name">inventario_maquinas_cafeteria.mantenimiento.view.tree</field>
+      <field name="model">inventario_maquinas_cafeteria.mantenimiento</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="descripcion" required="1"/>
+          <field name="tecnico" required="1"/>
+          <field name="coste" required="1"/>
+          <field name="fecha"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="inventario_maquinas_cafeteria.mantenimiento_form_view">
+      <field name="name">inventario_maquinas_cafeteria.mantenimiento.view.form</field>
+      <field name="model">inventario_maquinas_cafeteria.mantenimiento</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de Mantenimientos">
+          <sheet>
+            <separator string="Información de la Mantenimiento"/>
+            <group>
+              <group>
+                <field name="maquina_id"/>
+                <field name="tecnico"/>
+                <field name="descripcion"/>
+                <field name="coste"/>
+                <field name="fecha"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="inventario_maquinas_cafeteria.mantenimiento_calendar_view">
+      <field name="name">inventario_maquinas_cafeteria.mantenimiento.view.calendar</field>
+      <field name="model">inventario_maquinas_cafeteria.mantenimiento</field>
+      <field name="arch" type="xml">
+        <calendar string="Calendario de mantenimientos" date_start="fecha" color="tecnico" mode="month">
+          <field name="descripcion"/>
+          <field name="tecnico"/>
+          <field name="coste"/>
+          <field name="fecha"/>
+        </calendar>
+      </field>
+    </record>
+
+    <!-- DEFINICIÓN DE MENUS -->
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="inventario_maquinas_cafeteria.maquina_action_window">
+      <field name="name">Máquinas</field>
+      <field name="res_model">inventario_maquinas_cafeteria.maquina</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="inventario_maquinas_cafeteria.mantenimiento_action_window">
+      <field name="name">Mantenimientos</field>
+      <field name="res_model">inventario_maquinas_cafeteria.mantenimiento</field>
+      <field name="view_mode">tree,form,calendar</field>
+    </record>
+
+    <!-- Top menu item -->
+
+    <menuitem name="Inventario de Maquinas" id="inventario_maquinas_cafeteria.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Máquinas" id="inventario_maquinas_cafeteria.maquina_menu" parent="inventario_maquinas_cafeteria.menu_root" action="inventario_maquinas_cafeteria.maquina_action_window"/>
+    <menuitem name="Mantenimientos" id="inventario_maquinas_cafeteria.mantenimiento_menu" parent="inventario_maquinas_cafeteria.menu_root" action="inventario_maquinas_cafeteria.mantenimiento_action_window"/>
+
+  </data>
+</odoo>
