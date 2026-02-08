@@ -23,7 +23,7 @@ Este módulo proporciona herramientas para gestionar eficientemente el inventari
 1. **Clona el repositorio** utilizando el siguiente comando en tu terminal:
 
    ```bash
-   git clone https://github.com/tu\_usuario/tu\_repositorio.git
+   git clone https://github.com/Code-Monkeys-SL/SistemasDeGestionEmpresarial.git
    ```
 
 2. Coloca el módulo en el directorio de addons de Odoo.
